@@ -1,6 +1,10 @@
 
 add_executable(glpsol glpsol.c)
 target_link_libraries(glpsol glpk)
+if (UNIX)
+	target_link_libraries(glpsol m)
+endif ()
+
 
 add_test(NAME glpsol_version COMMAND glpsol --version)
 add_test(NAME glpsol_alloy COMMAND glpsol --mps ${CMAKE_CURRENT_SOURCE_DIR}/alloy.mps)
