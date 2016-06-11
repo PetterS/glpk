@@ -379,10 +379,14 @@ static int preprocess_and_solve_mip(glp_prob *P, const glp_iocp *parm)
          xprintf("Solving LP relaxation...\n");
       glp_init_smcp(&smcp);
       smcp.msg_lev = parm->msg_lev;
+      /* respect time limit */
+      smcp.tm_lim = parm->tm_lim;
       mip->it_cnt = P->it_cnt;
       ret = glp_simplex(mip, &smcp);
       P->it_cnt = mip->it_cnt;
-      if (ret != 0)
+      if (ret == GLP_ETMLIM)
+         goto done;
+      else if (ret != 0)
       {  if (parm->msg_lev >= GLP_MSG_ERR)
             xprintf("glp_intopt: cannot solve LP relaxation\n");
          ret = GLP_EFAIL;
@@ -679,6 +683,9 @@ void glp_init_iocp(glp_iocp *parm)
       parm->use_sol = GLP_OFF;
       parm->save_sol = NULL;
       parm->alien = GLP_OFF;
+#endif
+#if 1 /* 16/III-2016; not documented--should not be used */
+      parm->flip = GLP_OFF;
 #endif
       return;
 }

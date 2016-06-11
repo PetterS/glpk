@@ -4,12 +4,14 @@ CFLAGS = \
 /I. \
 /I..\src \
 /I..\src\amd \
+/I..\src\api \
 /I..\src\bflib \
 /I..\src\cglib \
 /I..\src\colamd \
 /I..\src\env \
 /I..\src\minisat \
 /I..\src\misc \
+/I..\src\mpl \
 /I..\src\proxy \
 /I..\src\simplex \
 /I..\src\zlib \
@@ -21,7 +23,6 @@ CFLAGS = \
 /Zi
 
 OBJSET = \
-..\src\avl.obj \
 ..\src\bfd.obj \
 ..\src\bfx.obj \
 ..\src\glpapi01.obj \
@@ -34,47 +35,19 @@ OBJSET = \
 ..\src\glpapi08.obj \
 ..\src\glpapi09.obj \
 ..\src\glpapi10.obj \
-..\src\glpapi11.obj \
 ..\src\glpapi12.obj \
 ..\src\glpapi13.obj \
-..\src\glpapi14.obj \
-..\src\glpapi15.obj \
-..\src\glpapi16.obj \
-..\src\glpapi17.obj \
-..\src\glpapi18.obj \
-..\src\glpapi19.obj \
-..\src\glpapi20.obj \
-..\src\glpapi21.obj \
-..\src\glpcpx.obj \
-..\src\glpdmx.obj \
-..\src\glpgmp.obj \
 ..\src\glphbm.obj \
-..\src\glpini01.obj \
-..\src\glpini02.obj \
 ..\src\glpios01.obj \
 ..\src\glpios02.obj \
 ..\src\glpios03.obj \
-..\src\glpios04.obj \
-..\src\glpios05.obj \
-..\src\glpios06.obj \
 ..\src\glpios07.obj \
-..\src\glpios08.obj \
 ..\src\glpios09.obj \
 ..\src\glpios10.obj \
 ..\src\glpios11.obj \
 ..\src\glpios12.obj \
 ..\src\glpipm.obj \
 ..\src\glpmat.obj \
-..\src\glpmpl01.obj \
-..\src\glpmpl02.obj \
-..\src\glpmpl03.obj \
-..\src\glpmpl04.obj \
-..\src\glpmpl05.obj \
-..\src\glpmpl06.obj \
-..\src\glpmps.obj \
-..\src\glpnet03.obj \
-..\src\glpnet04.obj \
-..\src\glpnet05.obj \
 ..\src\glpnpp01.obj \
 ..\src\glpnpp02.obj \
 ..\src\glpnpp03.obj \
@@ -83,12 +56,11 @@ OBJSET = \
 ..\src\glpnpp06.obj \
 ..\src\glprgr.obj \
 ..\src\glpscl.obj \
-..\src\glpsdf.obj \
 ..\src\glpspm.obj \
-..\src\glpsql.obj \
 ..\src\glpssx01.obj \
 ..\src\glpssx02.obj \
 ..\src\lux.obj \
+..\src\spv.obj \
 ..\src\amd\amd_1.obj \
 ..\src\amd\amd_2.obj \
 ..\src\amd\amd_aat.obj \
@@ -101,10 +73,59 @@ OBJSET = \
 ..\src\amd\amd_postorder.obj \
 ..\src\amd\amd_preprocess.obj \
 ..\src\amd\amd_valid.obj \
+..\src\api\advbas.obj \
+..\src\api\asnhall.obj \
+..\src\api\asnlp.obj \
+..\src\api\asnokalg.obj \
+..\src\api\ckasn.obj \
+..\src\api\ckcnf.obj \
+..\src\api\cplex.obj \
+..\src\api\cpp.obj \
+..\src\api\cpxbas.obj \
+..\src\api\graph.obj \
+..\src\api\gridgen.obj \
+..\src\api\intfeas1.obj \
+..\src\api\maxffalg.obj \
+..\src\api\maxflp.obj \
+..\src\api\mcflp.obj \
+..\src\api\mcfokalg.obj \
+..\src\api\mcfrelax.obj \
+..\src\api\minisat1.obj \
+..\src\api\mpl.obj \
+..\src\api\mps.obj \
+..\src\api\netgen.obj \
+..\src\api\pript.obj \
+..\src\api\prmip.obj \
+..\src\api\prrngs.obj \
+..\src\api\prsol.obj \
+..\src\api\rdasn.obj \
+..\src\api\rdcc.obj \
+..\src\api\rdcnf.obj \
+..\src\api\rdipt.obj \
+..\src\api\rdmaxf.obj \
+..\src\api\rdmcf.obj \
+..\src\api\rdmip.obj \
+..\src\api\rdprob.obj \
+..\src\api\rdsol.obj \
+..\src\api\rmfgen.obj \
+..\src\api\strong.obj \
+..\src\api\topsort.obj \
+..\src\api\weak.obj \
+..\src\api\wcliqex.obj \
+..\src\api\wrasn.obj \
+..\src\api\wrcc.obj \
+..\src\api\wrcnf.obj \
+..\src\api\wript.obj \
+..\src\api\wrmaxf.obj \
+..\src\api\wrmcf.obj \
+..\src\api\wrmip.obj \
+..\src\api\wrprob.obj \
+..\src\api\wrsol.obj \
 ..\src\bflib\btf.obj \
 ..\src\bflib\btfint.obj \
 ..\src\bflib\fhv.obj \
 ..\src\bflib\fhvint.obj \
+..\src\bflib\fvs.obj \
 ..\src\bflib\ifu.obj \
 ..\src\bflib\luf.obj \
 ..\src\bflib\lufint.obj \
@@ -114,6 +135,11 @@ OBJSET = \
 ..\src\bflib\sva.obj \
 ..\src\cglib\cfg.obj \
 ..\src\cglib\cfg1.obj \
+..\src\cglib\cfg2.obj \
+..\src\cglib\clqcut.obj \
+..\src\cglib\gmicut.obj \
+..\src\cglib\gmigen.obj \
+..\src\cglib\mirgen.obj \
 ..\src\colamd\colamd.obj \
 ..\src\env\alloc.obj \
 ..\src\env\dlsup.obj \
@@ -124,7 +150,9 @@ OBJSET = \
 ..\src\env\time.obj \
 ..\src\env\tls.obj \
 ..\src\minisat\minisat.obj \
+..\src\misc\avl.obj \
 ..\src\misc\bignum.obj \
+..\src\misc\dimacs.obj \
 ..\src\misc\dmp.obj \
 ..\src\misc\ffalg.obj \
 ..\src\misc\fp2rat.obj \
@@ -133,6 +161,7 @@ OBJSET = \
 ..\src\misc\keller.obj \
 ..\src\misc\mc13d.obj \
 ..\src\misc\mc21a.obj \
+..\src\misc\mygmp.obj \
 ..\src\misc\okalg.obj \
 ..\src\misc\qmd.obj \
 ..\src\misc\relax4.obj \
@@ -146,6 +175,13 @@ OBJSET = \
 ..\src\misc\triang.obj \
 ..\src\misc\wclique.obj \
 ..\src\misc\wclique1.obj \
+..\src\mpl\mpl1.obj \
+..\src\mpl\mpl2.obj \
+..\src\mpl\mpl3.obj \
+..\src\mpl\mpl4.obj \
+..\src\mpl\mpl5.obj \
+..\src\mpl\mpl6.obj \
+..\src\mpl\mplsql.obj \
 ..\src\proxy\proxy.obj \
 ..\src\proxy\proxy1.obj \
 ..\src\simplex\spxat.obj \
@@ -177,29 +213,31 @@ OBJSET = \
 .c.obj:
         cl.exe $(CFLAGS) /Fo$*.obj /c $*.c
 
-all: glpk_4_57.dll glpsol.exe
+all: glpk_4_60.dll glpsol.exe
 
-glpk_4_57.dll: $(OBJSET)
-        cl.exe $(CFLAGS) /LD /Feglpk_4_57.dll \
+glpk_4_60.dll: $(OBJSET)
+        cl.exe $(CFLAGS) /LD /Feglpk_4_60.dll \
                 ..\src\*.obj \
                 ..\src\amd\*.obj \
+                ..\src\api\*.obj \
                 ..\src\bflib\*.obj \
                 ..\src\cglib\*.obj \
                 ..\src\colamd\*.obj \
                 ..\src\env\*.obj \
                 ..\src\minisat\*.obj \
                 ..\src\misc\*.obj \
+                ..\src\mpl\*.obj \
                 ..\src\proxy\*.obj \
                 ..\src\simplex\*.obj \
                 ..\src\zlib\*.obj \
-                glpk_4_57.def
+                glpk_4_60.def
 
-glpsol.exe: ..\examples\glpsol.obj glpk_4_57.dll
+glpsol.exe: ..\examples\glpsol.obj glpk_4_60.dll
         cl.exe $(CFLAGS) /Feglpsol.exe \
-                ..\examples\glpsol.obj glpk_4_57.lib
+                ..\examples\glpsol.obj glpk_4_60.lib
 
 check: glpsol.exe
         .\glpsol.exe --version
-        .\glpsol.exe --mps ..\examples\plan.mps
+        .\glpsol.exe --mps ..\examples\murtagh.mps --max
 
 ## eof ##

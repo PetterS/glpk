@@ -4,9 +4,9 @@
 *  This code is part of GLPK (GNU Linear Programming Kit).
 *
 *  Copyright (C) 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008,
-*  2009, 2010, 2011, 2013, 2014, 2015 Andrew Makhorin, Department for
-*  Applied Informatics, Moscow Aviation Institute, Moscow, Russia. All
-*  rights reserved. E-mail: <mao@gnu.org>.
+*  2009, 2010, 2011, 2013, 2014, 2015, 2016 Andrew Makhorin, Department
+*  for Applied Informatics, Moscow Aviation Institute, Moscow, Russia.
+*  All rights reserved. E-mail: <mao@gnu.org>.
 *
 *  GLPK is free software: you can redistribute it and/or modify it
 *  under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ extern "C" {
 
 /* library version numbers: */
 #define GLP_MAJOR_VERSION  4
-#define GLP_MINOR_VERSION  57
+#define GLP_MINOR_VERSION  60
 
 typedef struct glp_prob glp_prob;
 /* LP/MIP problem object */
@@ -124,6 +124,9 @@ typedef struct
       int r_test;             /* ratio test technique: */
 #define GLP_RT_STD      0x11  /* standard (textbook) */
 #define GLP_RT_HAR      0x22  /* Harris' two-pass ratio test */
+#if 1 /* 16/III-2016 */
+#define GLP_RT_FLIP     0x33  /* long-step (flip-flop) ratio test */
+#endif
       double tol_bnd;         /* spx.tol_bnd */
       double tol_dj;          /* spx.tol_dj */
       double tol_piv;         /* spx.tol_piv */
@@ -194,7 +197,10 @@ typedef struct
       const char *save_sol;   /* filename to save every new solution */
       int alien;              /* use alien solver */
 #endif
-      double foo_bar[24];     /* (reserved) */
+#if 1 /* 16/III-2016; not documented--should not be used */
+      int flip;               /* use long-step dual simplex */
+#endif
+      double foo_bar[23];     /* (reserved) */
 } glp_iocp;
 
 typedef struct
@@ -722,6 +728,57 @@ int glp_ios_heur_sol(glp_tree *T, const double x[]);
 void glp_ios_terminate(glp_tree *T);
 /* terminate the solution process */
 
+#ifdef GLP_UNDOC
+int glp_gmi_cut(glp_prob *P, int j, int ind[], double val[], double
+      phi[]);
+/* generate Gomory's mixed integer cut (core routine) */
+#endif
+
+#ifdef GLP_UNDOC
+int glp_gmi_gen(glp_prob *P, glp_prob *pool, int max_cuts);
+/* generate Gomory's mixed integer cuts */
+#endif
+
+#ifdef GLP_UNDOC
+typedef struct glp_mir glp_mir;
+/* MIR cut generator workspace */
+#endif
+
+#ifdef GLP_UNDOC
+glp_mir *glp_mir_init(glp_prob *P);
+/* create and initialize MIR cut generator */
+#endif
+
+#ifdef GLP_UNDOC
+int glp_mir_gen(glp_prob *P, glp_mir *mir, glp_prob *pool);
+/* generate mixed integer rounding (MIR) cuts */
+#endif
+
+#ifdef GLP_UNDOC
+void glp_mir_free(glp_mir *mir);
+/* delete MIR cut generator workspace */
+#endif
+
+#ifdef GLP_UNDOC
+typedef struct glp_cfg glp_cfg;
+/* conflict graph descriptor */
+#endif
+
+#ifdef GLP_UNDOC
+glp_cfg *glp_cfg_init(glp_prob *P);
+/* create and initialize conflict graph */
+#endif
+
+#ifdef GLP_UNDOC
+void glp_cfg_free(glp_cfg *G);
+/* delete conflict graph descriptor */
+#endif
+
+#ifdef GLP_UNDOC
+int glp_clq_cut(glp_prob *P, glp_cfg *G, int ind[], double val[]);
+/* generate clique cut from conflict graph */
+#endif
+
 void glp_init_mpscp(glp_mpscp *parm);
 /* initialize MPS format control parameters */
 
@@ -751,6 +808,9 @@ int glp_write_prob(glp_prob *P, int flags, const char *fname);
 glp_tran *glp_mpl_alloc_wksp(void);
 /* allocate the MathProg translator workspace */
 
+void glp_mpl_init_rand(glp_tran *tran, int seed);
+/* initialize pseudo-random number generator */
+
 int glp_mpl_read_model(glp_tran *tran, const char *fname, int skip);
 /* read and translate model section */
 
@@ -768,9 +828,6 @@ int glp_mpl_postsolve(glp_tran *tran, glp_prob *prob, int sol);
 
 void glp_mpl_free_wksp(glp_tran *tran);
 /* free the MathProg translator workspace */
-
-int glp_main(int argc, const char *argv[]);
-/* stand-alone LP/MIP solver */
 
 int glp_read_cnfsat(glp_prob *P, const char *fname);
 /* read CNF-SAT problem data in DIMACS format */
@@ -860,6 +917,12 @@ void glp_mem_limit(int limit);
 void glp_mem_usage(int *count, int *cpeak, size_t *total,
       size_t *tpeak);
 /* get memory usage information */
+
+double glp_time(void);
+/* determine current universal time */
+
+double glp_difftime(double t1, double t0);
+/* compute difference between two time values */
 
 typedef struct glp_graph glp_graph;
 typedef struct glp_vertex glp_vertex;

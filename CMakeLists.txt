@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
+project(Glpk C)
 enable_testing()
 if (NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release CACHE STRING "CMake build type." FORCE)

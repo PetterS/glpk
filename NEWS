@@ -1,3 +1,65 @@
+GLPK 4.60 (release date: Apr 01, 2016)
+
+        Some improvements were made in the primal and dual simplex
+        solvers to make the solution process more numerically stable.
+
+        An experimental long-step ratio test feature was added to the
+        dual simplex. On API level this feature is available thru the
+        GLP_RT_FLIP option. For glpsol it is available thru the options
+        --flip (for MIP) or --flip and --dual (for LP). This feature is
+        not documented yet.
+
+        Additional check was added to reject wrong solutions sometimes
+        reported by the PROXY heuristic.
+
+        A bug (memory leak) was fixed in the FPUMP heuristic routine.
+        Thanks to <nicolas.derhy@engie.com> for bug report.
+
+        The header sql.h was renamed to avoid conflicts with standard
+        ODBC headers. Thanks to Noli Sicad <nsicad@gmail.com> for bug
+        report.
+
+GLPK 4.59 (release date: Mar 11, 2016)
+
+        This is a maintainer release.
+
+        Some bugs were fixed and some improvements were made in the MIP
+        solver. Thanks to Chris Matrakidis <cmatraki@gmail.com> for bug
+        reports and patches.
+
+        The data file format used by API routines glp_read_graph and
+        glp_write_graph was changed. For more details please see the
+        document "GLPK: Graph and Network Routines" included in the
+        distribution.
+
+        Translation of the document "Modeling Language GNU MathProg"
+        to Brazilian Portuguese (pt-BR) was included (in LaTeX and pdf
+        formats). Thanks to Joao Flavio de Freitas Almeida
+        <joao.flavio@dep.ufmg.br> for contribution.
+
+GLPK 4.58 (release date: Feb 18, 2016)
+
+        The solution file format used by API routines glp_read_sol,
+        glp_write_sol, glp_read_ipt, glp_write_ipt, glp_read_mip, and
+        glp_write_mip was changed. For more details please see the GLPK
+        reference manual included in the distribution.
+
+        The tan function (trigonometric tangent) was added to
+        GNU MathProg modeling language. Thanks to Chris Matrakidis
+        <cmatraki@gmail.com> for contribution.
+
+        A new version of the document "Modeling Language GNU MathProg"
+        in Spanish was included (in LaTeX and pdf formats). Thanks to
+        Pablo Yapura <ypf@agro.unlp.edu.ar> for contribution.
+
+        A check to determine if libtool needs '-no-undefined' flag to
+        build shared libraries on some platforms was added.
+        Thanks to Marco Atzeri <marco.atzeri@gmail.com> and Heinrich
+        Schuchardt <xypron.glpk@gmx.de> for suggestion.
+
+        A script to regenerate the configure script and the Makefiles
+        was added. Thanks to Heinrich Schuchardt <xypron.glpk@gmx.de>.
+
 GLPK 4.57 (release date: Nov 08, 2015)
 
         A new, more efficient implementation of the dual simplex method
