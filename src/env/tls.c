@@ -23,9 +23,13 @@
 
 #include "env.h"
 
-static void *tls = NULL;
-/* NOTE: in a re-entrant version of the package this variable should be
- * placed in the Thread Local Storage (TLS) */
+/* Place the global environment in Thread Local Storage (TLS) to make
+ * the library re-entrant. */
+#ifdef WIN32
+__declspec(thread) static void *tls = NULL;
+#else
+static __thread void *tls = NULL;
+#endif
 
 /***********************************************************************
 *  NAME
