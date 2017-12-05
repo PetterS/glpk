@@ -11,6 +11,7 @@ libglpk_la_CPPFLAGS = \
 -I$(srcdir)/bflib \
 -I$(srcdir)/cglib \
 -I$(srcdir)/colamd \
+-I$(srcdir)/draft \
 -I$(srcdir)/env \
 -I$(srcdir)/minisat \
 -I$(srcdir)/misc \
@@ -20,49 +21,11 @@ libglpk_la_CPPFLAGS = \
 -I$(srcdir)/zlib
 
 libglpk_la_LDFLAGS = \
--version-info 41:0:1 \
+-version-info 42:3:2 \
 -export-symbols-regex '^glp_*' \
 ${NOUNDEFINED}
 
 libglpk_la_SOURCES = \
-bfd.c \
-bfx.c \
-glpapi01.c \
-glpapi02.c \
-glpapi03.c \
-glpapi04.c \
-glpapi05.c \
-glpapi06.c \
-glpapi07.c \
-glpapi08.c \
-glpapi09.c \
-glpapi10.c \
-glpapi12.c \
-glpapi13.c \
-glphbm.c \
-glpios01.c \
-glpios02.c \
-glpios03.c \
-glpios07.c \
-glpios09.c \
-glpios10.c \
-glpios11.c \
-glpios12.c \
-glpipm.c \
-glpmat.c \
-glpnpp01.c \
-glpnpp02.c \
-glpnpp03.c \
-glpnpp04.c \
-glpnpp05.c \
-glpnpp06.c \
-glprgr.c \
-glpscl.c \
-glpspm.c \
-glpssx01.c \
-glpssx02.c \
-lux.c \
-spv.c \
 amd/amd_1.c \
 amd/amd_2.c \
 amd/amd_aat.c \
@@ -98,6 +61,11 @@ api/mps.c \
 api/netgen.c \
 api/pript.c \
 api/prmip.c \
+api/prob1.c \
+api/prob2.c \
+api/prob3.c \
+api/prob4.c \
+api/prob5.c \
 api/prrngs.c \
 api/prsol.c \
 api/rdasn.c \
@@ -142,11 +110,45 @@ cglib/clqcut.c \
 cglib/gmicut.c \
 cglib/gmigen.c \
 cglib/mirgen.c \
+cglib/spv.c \
 colamd/colamd.c \
+draft/bfd.c \
+draft/bfx.c \
+draft/glpapi06.c \
+draft/glpapi07.c \
+draft/glpapi08.c \
+draft/glpapi09.c \
+draft/glpapi10.c \
+draft/glpapi12.c \
+draft/glpapi13.c \
+draft/glphbm.c \
+draft/glpios01.c \
+draft/glpios02.c \
+draft/glpios03.c \
+draft/glpios07.c \
+draft/glpios09.c \
+draft/glpios10.c \
+draft/glpios11.c \
+draft/glpios12.c \
+draft/glpipm.c \
+draft/glpmat.c \
+draft/glpnpp01.c \
+draft/glpnpp02.c \
+draft/glpnpp03.c \
+draft/glpnpp04.c \
+draft/glpnpp05.c \
+draft/glpnpp06.c \
+draft/glprgr.c \
+draft/glpscl.c \
+draft/glpspm.c \
+draft/glpssx01.c \
+draft/glpssx02.c \
+draft/lux.c \
 env/alloc.c \
 env/dlsup.c \
 env/env.c \
 env/error.c \
+env/stdc.c \
 env/stdout.c \
 env/stream.c \
 env/time.c \

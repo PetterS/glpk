@@ -369,8 +369,10 @@ int glp_simplex(glp_prob *P, const glp_smcp *parm)
       glp_smcp _parm;
       int i, j, ret;
       /* check problem object */
+#if 0 /* 04/IV-2016 */
       if (P == NULL || P->magic != GLP_PROB_MAGIC)
          xerror("glp_simplex: P = %p; invalid problem object\n", P);
+#endif
       if (P->tree != NULL && P->tree->reason != 0)
          xerror("glp_simplex: operation not allowed\n");
       /* check control parameters */
@@ -414,7 +416,11 @@ int glp_simplex(glp_prob *P, const glp_smcp *parm)
       if (parm->tm_lim < 0)
          xerror("glp_simplex: tm_lim = %d; invalid parameter\n",
             parm->tm_lim);
+#if 0 /* 15/VII-2017 */
       if (parm->out_frq < 1)
+#else
+      if (parm->out_frq < 0)
+#endif
          xerror("glp_simplex: out_frq = %d; invalid parameter\n",
             parm->out_frq);
       if (parm->out_dly < 0)
@@ -423,6 +429,17 @@ int glp_simplex(glp_prob *P, const glp_smcp *parm)
       if (!(parm->presolve == GLP_ON || parm->presolve == GLP_OFF))
          xerror("glp_simplex: presolve = %d; invalid parameter\n",
             parm->presolve);
+#if 1 /* 11/VII-2017 */
+      if (!(parm->excl == GLP_ON || parm->excl == GLP_OFF))
+         xerror("glp_simplex: excl = %d; invalid parameter\n",
+            parm->excl);
+      if (!(parm->shift == GLP_ON || parm->shift == GLP_OFF))
+         xerror("glp_simplex: shift = %d; invalid parameter\n",
+            parm->shift);
+      if (!(parm->aorn == GLP_USE_AT || parm->aorn == GLP_USE_NT))
+         xerror("glp_simplex: aorn = %d; invalid parameter\n",
+            parm->aorn);
+#endif
       /* basic solution is currently undefined */
       P->pbs_stat = P->dbs_stat = GLP_UNDEF;
       P->obj_val = 0.0;
@@ -498,9 +515,18 @@ void glp_init_smcp(glp_smcp *parm)
       parm->obj_ul = +DBL_MAX;
       parm->it_lim = INT_MAX;
       parm->tm_lim = INT_MAX;
+#if 0 /* 15/VII-2017 */
       parm->out_frq = 500;
+#else
+      parm->out_frq = 5000; /* 5 seconds */
+#endif
       parm->out_dly = 0;
       parm->presolve = GLP_OFF;
+#if 1 /* 11/VII-2017 */
+      parm->excl = GLP_ON;
+      parm->shift = GLP_ON;
+      parm->aorn = GLP_USE_NT;
+#endif
       return;
 }
 
