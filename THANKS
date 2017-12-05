@@ -15,6 +15,8 @@ Anton Voropaev <anton.n.voropaev@gmail.com> for bug and typo report.
 
 Axel Simon <Axel.Simon@ens.fr> for bug report.
 
+Balaco Baco <balacobaco@imap.cc> for bug report.
+
 Bernhard Schmidt <schmidt@math.uni-augsburg.de> for bug report.
 
 Boris Wirtz <Boris.Wirtz@uni-oldenburg.de> for bug report.
@@ -38,10 +40,17 @@ Charles Brixko <charles.brixko@voo.be> for bug report.
 Chris Matrakidis <cmatraki@gmail.com> for contribution of a patch that
 implements the tan function in MathProg.
 
+Chris Matrakidis <cmatraki@gmail.com> for numerous useful suggestions,
+contributions, and patches.
+
 Chris Rosebrugh <cpr@pobox.com> for contribution of a new version of
 GLPK JNI (Java Native Interface).
 
 Christophe Caron <caron@diamant.jouy.inra.fr> for bug report.
+
+David Monniaux <david.monniaux@imag.fr> for some suggestions.
+
+David Monniaux <David.Monniaux@univ-grenoble-alpes.fr> for bug report.
 
 David T. Price <dtprice@speakeasy.net> for bug report.
 
@@ -91,6 +100,8 @@ language reference.
 
 Jeroen Demeyer <jdemeyer@cage.ugent.be> for suggestion.
 
+Jeroen Demeyer <jdemeyer@cage.ugent.be> for bug report.
+
 Jiri Spitz <jiri.spitz@telecom.cz> for bug report.
 
 Joao Flavio de Freitas Almeida <joao.flavio@dep.ufmg.br> for
@@ -123,6 +134,8 @@ Mark Meketon <Marc.Meketon@oliverwyman.com> for bug report.
 Markus Pilz <pilz@cs.uni-bonn.de> for bug report.
 
 Martin Jacob <mj@bahntechnik.de> for bug report.
+
+Mike Appleby <mike@app.leby.org> for example model in MathProg.
 
 Minh Ha Duong <haduong@centre-cired.fr> for fixing doc typos.
 
@@ -170,6 +183,8 @@ Peter Ingerfeld <peter.ingerfeld@mops-optimizer.com> for bug report.
 
 Peter Lee <plee@kinggee.com.au> for example LP model and bug report.
 
+Peter Naszvadi <vuk@cs.elte.hu> for example models in MathProg.
+
 Pietro Scionti <pietro.scionti@archinet.it> for report typos found in
 the reference manual.
 
@@ -179,6 +194,8 @@ shared library support under GNU/Linux.
 Raniere Gaia Costa da Silva for bug report.
 
 Remy Roy <remyroyster@gmail.com> for bug report.
+
+Rob Schroeder <Rob.Schroeder@graphicpkg.com> for bug report.
 
 Robbie Morrison <robbie@actrix.co.nz> for correcting the glpk manual.
 

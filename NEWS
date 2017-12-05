@@ -1,3 +1,108 @@
+GLPK 4.64 (release date: Dec 02, 2017)
+
+        The dual simplex solver routine was changed to perform more
+        aggressive perturbation to prevent dual degeneracy and avoid
+        stalling even if the current dual basic solution is strongly
+        feasible (mainly if the objective is zero). Thanks to David
+        Monniaux <David.Monniaux@univ-grenoble-alpes.fr> for bug report
+        and example model.
+
+        The exact simplex solver routine was changed to perform
+        terminal output according to the verbosity level (specified by
+        the control parameter smcp.msg_lev). Thanks to Jeroen Demeyer
+        <jdemeyer@cage.ugent.be> for bug report.
+
+        A minor bug (related to MS Windows version) was fixed. Thanks
+        to Heinrich Schuchardt <xypron.glpk@gmx.de> for bug report.
+
+        An example model (Graceful Tree Labeling Problem) in MathProg
+        was added. Thanks to Mike Appleby <mike@app.leby.org> for
+        contribution.
+
+        Three example models (Power plant LP scheduler, Neumann CA
+        grid emulator generator) in MathProg and one in Cplex LP format
+        were added. Thanks to Peter Naszvadi <vuk@cs.elte.hu> for
+        contribution.
+
+GLPK 4.63 (release date: Jul 25, 2017)
+
+        A "smart" LP perturbation was implemented in the primal and
+        dual simplex solvers. Now LP is perturbed only if it is
+        necessary, and by default perturbation is not activated.
+        The sum of primal infeasibilites that appears in the terminal
+        output of the primal simplex solver (as "inf = ...") now
+        corresponds to the original bounds of variables. This allows to
+        see how much perturbed solution violates the original bounds.
+
+        The long-step technique was implemented for phase I of the
+        primal simplex solver. This feature can be enabled by
+        specifying --flip option for glpsol or by specifying
+        glp_smcp.r_test = GLP_RT_FLIP on api level. For many LP
+        instances the long-step technique allows reducing the number
+        of simplex iterations to 30-70%. Please note that unlike the
+        dual simplex, where this technique can be used on both phase I
+        and II, for the primal simplex it can be used only on phase I,
+        where the sum of primal infeasibilities (which is a convex
+        piecewise linear function) is minimized.
+
+        An internal objective scaling was included in both primal and
+        dual simplex solvers. For many LP/MIP instances this feature
+        improves numerical stability (for the dual solver) and prevents
+        cycling near the optimum (for the primal solver).
+
+        The Posix version of glp_time (glpk/src/env/time.c) was changed
+        to resolve time_t issue on msys2. Thanks to Rob Schroeder
+        <Rob.Schroeder@graphicpkg.com> for bug report.
+
+        Three new example models in MathProg were added:
+        life_goe.mod (Conway's Game of Life garden of eden checker);
+        tiling.mod (Rectifiable polyomino tilings generator);
+        toto.mod (Covering code generator).
+        Thanks to Peter Naszvadi <vuk@cs.elte.hu> for contribution.
+
+GLPK 4.62 (release date: Jun 14, 2017)
+
+        The bound perturbation technique was included in the primal
+        simplex solver to improve numerical stability and avoid cycling.
+        Currently this feature is enabled by default.
+
+        A range bug was fixed in the MPS reading routine. Thanks to
+        Chris Matrakidis <cmatraki@gmail.com> for bug report and patch.
+
+        Changes were made to provide 64-bit portability of the Minisat
+        solver. Thanks to Chris Matrakidis <cmatraki@gmail.com> for
+        patch.
+
+        Calls to non-thread-safe functions gmtime, strerror, and strtok
+        were replaced by calls to corresponding thread-safe equivalents
+        (gmtime_r, strerror_r, and strtok_r for GNU/Linux).
+
+GLPK 4.61 (release date: Jan 22, 2017)
+
+        An option was added to build a re-entrant version of the
+        package suitable for running in a multi-threaded environment.
+        This option is enabled by default on configuring the package
+        if the compiler used supports the thread local storage class
+        specifier (e.g. _Thread_local or __thread). Thanks to
+        David Monniaux <david.monniaux@imag.fr> for suggestion and
+        Chris Matrakidis <cmatraki@gmail.com> for configure.ac patch.
+
+        A re-entrant version of the package allows running multiple
+        independent instances of glpk in different threads of a multi-
+        threaded application. Note that glpk is not thread-safe by
+        design, so if the application calls glpk routines from multiple
+        threads, no thread may access glpk program objects (glp_prob,
+        glp_tree, etc.) created by other threads; besides, each thread
+        before termination should call the API routine glp_free_env to
+        prevent memory leak.
+
+        A DLL support was added. Thanks to Heinrich Schuchardt
+        <xypron.glpk@gmx.de> for contribution.
+
+        Some changes were made to allow compiling the package using
+        stdcall calling convention (this is needed only on compiling
+        GLPK with MSVC to run under MS Windows).
+
 GLPK 4.60 (release date: Apr 01, 2016)
 
         Some improvements were made in the primal and dual simplex
